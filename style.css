@@ -10,7 +10,7 @@ body {
 	align-items: center;
 	height: 100vh;
 }
-.game-board{
+#game-board{
 	position: relative;
 	display: grid;
 	grid-template-columns: repeat(4, 20vmin);

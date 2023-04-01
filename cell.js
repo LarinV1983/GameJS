@@ -1,10 +1,9 @@
 export class Cell {
-	constructor (GridElement, x, y) {
-		const cell = document.createElement(div);
-		cell.classList.add('cell');
-		GridElement.append(cell);
+	constructor (gridElement, x, y) {
+		const cell = document.createElement("div");
+		cell.classList.add("cell");
+		gridElement.append(cell);
 		this.x = x;
 		this.y = y;
-
 	}
 }
