@@ -37,8 +37,8 @@ body {
 	font-family: Arial, sans-serif;
 	font-size: 8vmin;
 	font-weight: bold;
-	background-color: #EAF3BE;
-	color: #000;
+	background-color: hsl(25, 70%, var( --bg-Light));
+	color: hsl(20, 30%, var(--text-Light));
 	transition: 100ms;
 	animation: show 200ms;
 }
