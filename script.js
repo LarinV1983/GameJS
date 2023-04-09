@@ -18,13 +18,13 @@ function setupInput() {
 				moveUp();
 			break;
 			case 'ArrowDown':
-				moveDown();
+				// moveDown();
 			break;
 			case 'ArrowLeft':
-				moveLeft();
+				// moveLeft();
 			break;
 			case 'ArrowRight':
-				moveRight();
+				// moveRight();
 			break;
 
 		default:
@@ -54,6 +54,11 @@ function setupInput() {
 			if (!targetCell) {
 				continue;
 			}
-			
+			if (targetCell.isEmpty()) {
+				targetCell.linkTile(cellTile.linkedTile);
+			} else {
+				targetCell.linkTileMerge(cellTile.linkedTile);
+			}
+			cellTile.unlinkTile();
 		}
 	}
