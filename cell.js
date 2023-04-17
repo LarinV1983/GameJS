@@ -40,9 +40,8 @@ export class Cell {
 		);
 	}
 		mergeTiles() {
-			this.linkedTile.setValue(this.linkedTile.value + 
-				this.linkedTileMerge.value);
-			this.linkTileMerge.removeDom();
+			this.linkedTile.setValue(this.linkedTile.value + this.linkedTileMerge.value);
+			this.linkedTileMerge.removeDom();
 			this.unLinkTileMerge();
 	}
 }

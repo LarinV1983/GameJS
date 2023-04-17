@@ -10,7 +10,9 @@ export class Grid {
 			this.cells.push(
 				new Cell(gridElement, i % GridSize, Math.floor(i / GridSize)))	  
 		}
+
 		this.cellsGroupColumn = this.cellsGroupColumn();
+		this.cellsGroupReversedColumn = this.cellsGroupColumn.map(column => [...column].reverse());
 	}
 
 	getRandomCell(){
