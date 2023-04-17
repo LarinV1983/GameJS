@@ -22,5 +22,7 @@ export class Tile {
 		this.tileElement.style.setProperty('--y', y);
 	}
 
-	
+	removeDom() {
+		this.tileElement.remove();
+	}
 } 

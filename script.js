@@ -18,7 +18,7 @@ function setupInput() {
 				moveUp();
 			break;
 			case 'ArrowDown':
-				// moveDown();
+				moveDown();
 			break;
 			case 'ArrowLeft':
 				// moveLeft();
@@ -39,8 +39,16 @@ function setupInput() {
 		slideTiles(grid.cellsGroupColumn);
 	}
 
+	function moveDown() {
+		slideTiles(grid.cellsGroupReversedColumn);
+	}
+
 	function slideTiles(groupCells) {
 		groupCells.forEach(group => slideTitleGroup(group));
+
+		grid.cells.forEach(cell => {
+			cell.hasTileMerge() && cell.mergeTiles();
+		});
 	}
 
 	function slideTitleGroup(group) {
