@@ -22,15 +22,15 @@ export class Cell {
 
 	linkTileMerge(tile) {
 		tile.setXY(this.x, this.y);
-		this.linkTileMerge = tile;
+		this.linkedTileMerge = tile;
 	}
 
 	unLinkTileMerge() {
-		this.linkTileMerge= null;
+		this.linkedTileMerge= null;
 	}
 
 	hasTileMerge() {
-		return !!this.linkTileMerge;
+		return !!this.linkedTileMerge;
 	}
 
 	canAccept(newTile) {

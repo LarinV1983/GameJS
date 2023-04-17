@@ -63,9 +63,9 @@ function setupInput() {
 				continue;
 			}
 			if (targetCell.isEmpty()) {
-				targetCell.linkTile(cellTile.linkedTile);
+				targetCell.linkTile(cellTile.linkTile);
 			} else {
-				targetCell.linkTileMerge(cellTile.linkedTile);
+				targetCell.linkTileMerge(cellTile.linkTile);
 			}
 			cellTile.unlinkTile();
 		}
