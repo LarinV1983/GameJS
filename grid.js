@@ -11,8 +11,10 @@ export class Grid {
 				new Cell(gridElement, i % GridSize, Math.floor(i / GridSize)))	  
 		}
 
-		this.cellsGroupColumn = this.cellsGroupColumn();
+		this.cellsGroupColumn = this.groupCellsColumn();
 		this.cellsGroupReversedColumn = this.cellsGroupColumn.map(column => [...column].reverse());
+		this.cellsGroupRow = this.groupCellsRow();
+		this.cellsGroupReversedRow = this.cellsGroupRow.map(raw => [...raw].reverse());
 	}
 
 	getRandomCell(){
@@ -21,10 +23,18 @@ export class Grid {
 		return emptyCell[randomIndex];
 	}
 
-	cellsGroupColumn(){
+	groupCellsColumn() {
 		return this.cells.reduce((groupCells, cell) => {
 			groupCells[cell.x] = groupCells[cell.x] || [];
 			groupCells[cell.x][cell.y] = cell;
+			return groupCells;
+		}, []);
+	}
+
+	groupCellsRow() {
+		return this.cells.reduce((groupCells, cell ) => {
+			groupCells[cell.y] = groupCells[cell.y] || [];
+			groupCells[cell.y][cell.x] = cell;
 			return groupCells;
 		}, []);
 	}

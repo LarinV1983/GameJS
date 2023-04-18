@@ -31,6 +31,8 @@ function setupInput() {
 			setupInput();
 			return;
 		}
+		const newTile = new Tile(gameBoard);
+		grid.getRandomCell().linkTile(newTile);
 
 		setupInput();
 	}
@@ -53,6 +55,7 @@ function setupInput() {
 
 
 	function slideTiles(groupCells) {
+		const promises = [];
 		groupCells.forEach(group => slideTitleGroup(group));
 
 		grid.cells.forEach(cell => {
