@@ -21,10 +21,10 @@ function setupInput() {
 				moveDown();
 			break;
 			case 'ArrowLeft':
-				// moveLeft();
+				moveLeft();
 			break;
 			case 'ArrowRight':
-				// moveRight();
+				moveRight();
 			break;
 
 		default:
@@ -42,6 +42,15 @@ function setupInput() {
 	function moveDown() {
 		slideTiles(grid.cellsGroupReversedColumn);
 	}
+
+	function moveLeft() {
+		slideTiles(grid.cellsGroupRow);
+	}
+
+	function moveRight() {
+		slideTiles(grid.cellsGroupReversedRow);
+	}
+
 
 	function slideTiles(groupCells) {
 		groupCells.forEach(group => slideTitleGroup(group));
@@ -63,9 +72,9 @@ function setupInput() {
 				continue;
 			}
 			if (targetCell.isEmpty()) {
-				targetCell.linkTile(cellTile.linkTile);
+				targetCell.linkTile(cellTile.linkedTile);
 			} else {
-				targetCell.linkTileMerge(cellTile.linkTile);
+				targetCell.linkTileMerge(cellTile.linkedTile);
 			}
 			cellTile.unlinkTile();
 		}
