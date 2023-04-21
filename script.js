@@ -56,21 +56,25 @@ function setupInput() {
 
 	function slideTiles(groupCells) {
 		const promises = [];
-		groupCells.forEach(group => slideTitleGroup(group));
+		groupCells.forEach(group => slideTileGroup(group));
 
 		grid.cells.forEach(cell => {
 			cell.hasTileMerge() && cell.mergeTiles();
 		});
 	}
 
-	function slideTitleGroup(group) {
-		for (let i = 1; i< group.length; i++) {
+	function slideTileGroup(group) {
+		for (let i = 1; i < group.length; i++) {
 			if (group[i].isEmpty()) {
 				continue;
 			}
 			const cellTile = group[i];
 			let targetCell;
 			let j = i - 1;
+			while (j >= 0 && group[j].canAccept(cellTile.linkedTile)) {
+				targetCell = group[j];
+				j--;
+			}
 			if (!targetCell) {
 				continue;
 			}
@@ -79,6 +83,6 @@ function setupInput() {
 			} else {
 				targetCell.linkTileMerge(cellTile.linkedTile);
 			}
-			cellTile.unlinkTile();
+			cellTile.unLinkTile();
 		}
 	}
