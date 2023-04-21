@@ -22,21 +22,38 @@ function setupInput() {
 				moveUp();
 			break;
 			case 'ArrowDown':
+				if (!canMoveDown()) {
+					setupInput();
+					return;
+				}
 				moveDown();
 			break;
 			case 'ArrowLeft':
+				if (!canMoveLeft()) {
+					setupInput();
+					return;
+				}
 				moveLeft();
 			break;
 			case 'ArrowRight':
+				if (!canMoveRight()) {
+					setupInput();
+					return;
+				}
 				moveRight();
 			break;
-
 		default:
 			setupInput();
 			return;
 		}
 		const newTile = new Tile(gameBoard);
 		grid.getRandomCell().linkTile(newTile);
+
+		if (!canMoveUp() && !canMoveDown() && !canMoveLeft() && !canMoveRight()) {
+			newTile.waitAnimationEnd();
+			alert('Try again!');
+			return;
+		}
 
 		setupInput();
 	}
@@ -58,7 +75,6 @@ function setupInput() {
 	}
 
 	function slideTiles(groupCells) {
-		const promises = [];
 		groupCells.forEach(group => slideTileGroup(group));
 
 		grid.cells.forEach(cell => {
@@ -92,6 +108,18 @@ function setupInput() {
 
 	function canMoveUp() {
 		return canMove(grid.cellsGroupColumn);
+	}
+
+	function canMoveDown() {
+		return canMove(grid.cellsGroupReversedColumn);
+	}
+
+	function canMoveLeft() {
+		return canMove(grid.cellsGroupRow);
+	}
+
+	function canMoveRight() {
+		return canMove(grid.cellsGroupReversedRow);
 	}
 
 	function canMove(groupCells) {
