@@ -15,6 +15,10 @@ function setupInput() {
 	function handleInput(event) {
 		switch (event.key) {
 			case 'ArrowUp':
+				if (!canMoveUp()) {
+					setupInput();
+					return;
+				}
 				moveUp();
 			break;
 			case 'ArrowDown':
@@ -53,7 +57,6 @@ function setupInput() {
 		slideTiles(grid.cellsGroupReversedRow);
 	}
 
-
 	function slideTiles(groupCells) {
 		const promises = [];
 		groupCells.forEach(group => slideTileGroup(group));
@@ -85,4 +88,25 @@ function setupInput() {
 			}
 			cellTile.unLinkTile();
 		}
+	}
+
+	function canMoveUp() {
+		return canMove(grid.cellsGroupColumn);
+	}
+
+	function canMove(groupCells) {
+		return groupCells.some(group => canMoveGroup(group));
+	}
+
+	function canMoveGroup(group) {
+		return group.some((cell, index) => {
+			if (index === 0) {
+				return false;
+			}
+			if (cell.isEmpty()) {
+				return false;
+			}
+			const targetCell = group[index - 1];
+			return targetCell.canAccept(cell.linkedTile);
+		});
 	}
